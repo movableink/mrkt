@@ -38,5 +38,10 @@ module Mrkt
       get_landing_page_template_by_id(get_landing_page_id_from_name(name))
     end
 
+    def update_landing_page_template_content(id, path_to_file, mime_type)
+      url = "/rest/asset/v1/landingPageTemplate/#{id}/content.json"
+      post(url, content: Faraday::UploadIO.new(path_to_file, mime_type))
+    end
+
   end
 end
