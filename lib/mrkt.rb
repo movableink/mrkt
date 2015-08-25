@@ -7,6 +7,7 @@ require 'mrkt/concerns/crud_helpers'
 require 'mrkt/concerns/crud_campaigns'
 require 'mrkt/concerns/crud_leads'
 require 'mrkt/concerns/crud_lists'
+require 'mrkt/concerns/crud_templates'
 require 'mrkt/concerns/import_leads'
 
 module Mrkt
@@ -17,6 +18,7 @@ module Mrkt
     include CrudCampaigns
     include CrudLeads
     include CrudLists
+    include CrudTemplates
     include ImportLeads
 
     attr_accessor :debug
