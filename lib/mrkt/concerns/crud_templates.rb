@@ -44,7 +44,7 @@ module Mrkt
     end
 
     def approve_landing_page(id)
-      get("/rest/asset/v1/landingPageTemplate/{id}/approveDraft.json")
+      get("/rest/asset/v1/landingPageTemplate/#{id}/approveDraft.json")
     end
 
   end
