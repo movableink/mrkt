@@ -43,5 +43,9 @@ module Mrkt
       post(url, content: Faraday::UploadIO.new(path_to_file, mime_type))
     end
 
+    def approve_landing_page(id)
+      get("/rest/asset/v1/landingPageTemplate/{id}/approveDraft.json")
+    end
+
   end
 end
