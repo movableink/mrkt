@@ -18,6 +18,8 @@ module Mrkt
     end
 
     def get_landing_page_templates
+      params = {}
+      params[:maxReturn] = 200
       get('/rest/asset/v1/landingPageTemplates.json')
     end
 
