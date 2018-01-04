@@ -1,3 +1,3 @@
 module Mrkt
-  VERSION = '0.6.3'
+  VERSION = '0.9.1'
 end

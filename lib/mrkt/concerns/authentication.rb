@@ -1,8 +1,13 @@
 module Mrkt
   module Authentication
     def authenticate!
-      authenticate unless authenticated?
-      fail Mrkt::Errors::AuthorizationError, 'Client not authenticated' unless authenticated?
+      return if authenticated?
+
+      authenticate
+
+      retry_authentication if !authenticated? && @retry_authentication
+
+      raise Mrkt::Errors::AuthorizationError, 'Client not authenticated' unless authenticated?
     end
 
     def authenticated?
@@ -11,6 +16,15 @@ module Mrkt
 
     def valid_token?
       @valid_until && Time.now < @valid_until
+    end
+
+    def retry_authentication
+      @retry_authentication_count.times do
+        sleep(@retry_authentication_wait_seconds) if @retry_authentication_wait_seconds > 0
+        authenticate
+
+        break if authenticated?
+      end
     end
 
     def authenticate
